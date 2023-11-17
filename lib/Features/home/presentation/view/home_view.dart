@@ -12,11 +12,11 @@ class HomeView extends StatelessWidget {
         children: [
           Text(
             'This is the test bold text',
-            style: Styles.kH3,
+            style: Styles.kH3Bold,
           ),
           Text(
             'This is the test regular text',
-            style: TextStyle(fontSize: 24),
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
         ],
       )),

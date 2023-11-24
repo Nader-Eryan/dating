@@ -10,11 +10,11 @@ class BackArrowAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      toolbarHeight: 50.h,
+      toolbarHeight: 70.h,
       automaticallyImplyLeading: true,
       leadingWidth: 70.w,
       leading: const Padding(
-        padding: EdgeInsets.only(left: 16.0),
+        padding: EdgeInsets.only(left: 16.0, top: 8),
         child: BackArrow(),
       ),
     );

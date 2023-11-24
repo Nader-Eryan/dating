@@ -3,6 +3,7 @@ import 'package:dating/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/widgets/back_arrow_app_bar.dart';
 
@@ -42,7 +43,7 @@ class SignUpView extends StatelessWidget {
                 style: const ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(Colors.white),
                     foregroundColor: MaterialStatePropertyAll(kPrimaryClr)),
-                onPressed: () {},
+                onPressed: () => context.push('/enterPhone'),
                 child: const Text(
                   'Use phone number',
                   style: Styles.kH3Bold,

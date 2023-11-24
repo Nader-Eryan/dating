@@ -1,4 +1,7 @@
+import 'package:dating/Features/home/presentation/view/home_view.dart';
+import 'package:dating/Features/newAccount/presentation/view/enter_phone_view.dart';
 import 'package:dating/Features/newAccount/presentation/view/on_boarding_view.dart';
+import 'package:dating/Features/newAccount/presentation/view/pin_code_verf_view.dart';
 import 'package:dating/Features/newAccount/presentation/view/sign_up_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -21,6 +24,24 @@ final GoRouter router = GoRouter(
           path: 'onBoarding',
           builder: (BuildContext context, GoRouterState state) {
             return const OnBoardingView();
+          },
+        ),
+        GoRoute(
+          path: 'homeView',
+          builder: (BuildContext context, GoRouterState state) {
+            return const HomeView();
+          },
+        ),
+        GoRoute(
+          path: 'pinCodeVerf',
+          builder: (BuildContext context, GoRouterState state) {
+            return const PinCodeVerificationView();
+          },
+        ),
+        GoRoute(
+          path: 'enterPhone',
+          builder: (BuildContext context, GoRouterState state) {
+            return const EnterPhoneView();
           },
         ),
       ],

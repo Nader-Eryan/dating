@@ -4,12 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../../core/widgets/back_arrow_app_bar.dart';
+
 class SignUpView extends StatelessWidget {
   const SignUpView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const BackArrowAppBar(),
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.all(24),
@@ -22,38 +25,38 @@ class SignUpView extends StatelessWidget {
                 SvgPicture.asset('assets/images/trademark.svg'),
               ],
             ),
-            Text(
+            const Text(
               'Sign up to continue',
               style: Styles.kH4Bold,
             ),
             ElevatedButton(
-                style: ButtonStyle(
+                style: const ButtonStyle(
                     foregroundColor: MaterialStatePropertyAll(Colors.white),
                     backgroundColor: MaterialStatePropertyAll(kPrimaryClr)),
                 onPressed: () {},
-                child: Text(
+                child: const Text(
                   'Continue with email',
                   style: Styles.kH3Bold,
                 )),
             ElevatedButton(
-                style: ButtonStyle(
+                style: const ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(Colors.white),
                     foregroundColor: MaterialStatePropertyAll(kPrimaryClr)),
                 onPressed: () {},
-                child: Text(
+                child: const Text(
                   'Use phone number',
                   style: Styles.kH3Bold,
                 )),
             Row(
               children: [
-                Expanded(
+                const Expanded(
                   child: Divider(
                     thickness: 2,
                   ),
                 ),
                 SizedBox(
                     width: 180.w,
-                    child: Row(
+                    child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
@@ -61,7 +64,7 @@ class SignUpView extends StatelessWidget {
                             style: Styles.kH4,
                           )
                         ])),
-                Expanded(
+                const Expanded(
                   child: Divider(
                     thickness: 2,
                   ),
@@ -90,13 +93,13 @@ class SignUpView extends StatelessWidget {
               children: [
                 TextButton(
                     onPressed: () {},
-                    child: Text(
+                    child: const Text(
                       'Terms of use',
                       style: TextStyle(color: kPrimaryClr),
                     )),
                 TextButton(
                     onPressed: () {},
-                    child: Text(
+                    child: const Text(
                       'Privacy policy',
                       style: TextStyle(color: kPrimaryClr),
                     )),

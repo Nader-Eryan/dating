@@ -18,9 +18,8 @@ class _EnterPhoneViewState extends State<EnterPhoneView> {
 
   final TextEditingController controller = TextEditingController();
 
-  String initialCountry = 'NG';
   bool isValidNum = false;
-  PhoneNumber number = PhoneNumber(isoCode: 'NG');
+  PhoneNumber number = PhoneNumber();
 
   @override
   Widget build(BuildContext context) {

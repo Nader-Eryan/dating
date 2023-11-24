@@ -56,31 +56,8 @@ class OnBoardingViewState extends State<OnBoardingView> {
               style: Styles.kH3.copyWith(color: Colors.white),
             ),
           ),
-          SizedBox(
-            width: double.infinity,
-            height: 60,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  'Already have an account?',
-                  style: TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: const Text(
-                    ' Sign In',
-                    style: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.bold,
-                        color: kPrimaryClr),
-                  ),
-                ),
-              ],
-            ),
+          const SizedBox(
+            height: 20,
           ),
         ],
       ),

@@ -27,22 +27,14 @@ class SignUpView extends StatelessWidget {
               ],
             ),
             const Text(
-              'Sign up to continue',
+              'Sign in to continue',
               style: Styles.kH4Bold,
             ),
             ElevatedButton(
-                style: const ButtonStyle(
-                    foregroundColor: MaterialStatePropertyAll(Colors.white),
-                    backgroundColor: MaterialStatePropertyAll(kPrimaryClr)),
-                onPressed: () {},
-                child: const Text(
-                  'Continue with email',
-                  style: Styles.kH3Bold,
-                )),
-            ElevatedButton(
-                style: const ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll(Colors.white),
-                    foregroundColor: MaterialStatePropertyAll(kPrimaryClr)),
+                style: ButtonStyle(
+                    fixedSize: MaterialStatePropertyAll(Size(300.w, 50.h)),
+                    backgroundColor: MaterialStatePropertyAll(kPrimaryClr),
+                    foregroundColor: MaterialStatePropertyAll(Colors.white)),
                 onPressed: () => context.push('/enterPhone'),
                 child: const Text(
                   'Use phone number',
@@ -61,7 +53,7 @@ class SignUpView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            ' Or sign up with ',
+                            ' Or sign in with ',
                             style: Styles.kH4,
                           )
                         ])),
@@ -90,7 +82,7 @@ class SignUpView extends StatelessWidget {
               ],
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextButton(
                     onPressed: () {},

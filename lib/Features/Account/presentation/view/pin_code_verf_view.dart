@@ -1,20 +1,33 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
+
+import 'package:dating/core/utils/functions/verify_phone_number.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
 import 'package:dating/constants.dart';
 import 'package:dating/core/widgets/back_arrow_app_bar.dart';
-import 'package:flutter/material.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../../core/utils/functions/push_snack.dart';
 
 class PinCodeVerificationView extends StatefulWidget {
-  const PinCodeVerificationView({
-    Key? key,
-    this.phoneNumber,
-  }) : super(key: key);
+  const PinCodeVerificationView(
+      {Key? key,
+      this.phoneNumber,
+      required this.auth,
+      required this.verificationId,
+      required this.resendToken,
+      required this.number})
+      : super(key: key);
 
   final String? phoneNumber;
-
+  final FirebaseAuth auth;
+  final String? verificationId;
+  final int? resendToken;
+  final PhoneNumber number;
   @override
   State<PinCodeVerificationView> createState() =>
       _PinCodeVerificationViewState();
@@ -78,7 +91,7 @@ class _PinCodeVerificationViewState extends State<PinCodeVerificationView> {
                     text: "Enter the code sent to ",
                     children: [
                       TextSpan(
-                        text: "${widget.phoneNumber}",
+                        text: "${widget.number.phoneNumber}",
                         style: const TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
@@ -114,7 +127,7 @@ class _PinCodeVerificationViewState extends State<PinCodeVerificationView> {
                     blinkWhenObscuring: true,
                     animationType: AnimationType.fade,
                     validator: (v) {
-                      if (v!.length < 3) {
+                      if (v!.length < 6) {
                         return "Please enter a valid OTP";
                       } else {
                         return null;
@@ -184,7 +197,22 @@ class _PinCodeVerificationViewState extends State<PinCodeVerificationView> {
                     style: TextStyle(color: Colors.black54, fontSize: 15),
                   ),
                   TextButton(
-                    onPressed: () => pushSnackBar(context, "OTP resend!!"),
+                    onPressed: () async {
+                      try {
+                        await verifyPhoneNumber(
+                            context: context,
+                            auth: widget.auth,
+                            number: widget.number,
+                            willNavigate: false);
+                        if (mounted) {
+                          pushSnackBar(context, "OTP resend!!");
+                        }
+                      } catch (e) {
+                        if (mounted) {
+                          pushSnackBar(context, e.toString());
+                        }
+                      }
+                    },
                     child: const Text(
                       "RESEND",
                       style: TextStyle(
@@ -218,20 +246,24 @@ class _PinCodeVerificationViewState extends State<PinCodeVerificationView> {
                 child: ButtonTheme(
                   height: 50,
                   child: TextButton(
-                    onPressed: () {
-                      formKey.currentState!.validate();
+                    onPressed: () async {
+                      if (formKey.currentState!.validate()) {
+                        PhoneAuthCredential credential =
+                            PhoneAuthProvider.credential(
+                                verificationId: widget.verificationId!,
+                                smsCode: currentText);
+                        try {
+                          await widget.auth.signInWithCredential(credential);
+                          if (mounted) {
+                            context.go('/homeView');
+                          }
+                        } catch (e) {
+                          errorShakeAnimation();
+                        }
+                      }
                       // conditions for validating
-                      if (currentText.length != 6 || currentText != "123456") {
-                        errorController!.add(ErrorAnimationType
-                            .shake); // Triggering error shake animation
-                        setState(() => hasError = true);
-                      } else {
-                        setState(
-                          () {
-                            hasError = false;
-                            pushSnackBar(context, "OTP Verified!!");
-                          },
-                        );
+                      else {
+                        errorShakeAnimation();
                       }
                     },
                     child: Center(
@@ -255,5 +287,11 @@ class _PinCodeVerificationViewState extends State<PinCodeVerificationView> {
         ),
       ),
     );
+  }
+
+  void errorShakeAnimation() {
+    errorController!
+        .add(ErrorAnimationType.shake); // Triggering error shake animation
+    setState(() => hasError = true);
   }
 }

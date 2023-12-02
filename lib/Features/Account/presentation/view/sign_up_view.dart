@@ -33,8 +33,10 @@ class SignUpView extends StatelessWidget {
             ElevatedButton(
                 style: ButtonStyle(
                     fixedSize: MaterialStatePropertyAll(Size(300.w, 50.h)),
-                    backgroundColor: MaterialStatePropertyAll(kPrimaryClr),
-                    foregroundColor: MaterialStatePropertyAll(Colors.white)),
+                    backgroundColor:
+                        const MaterialStatePropertyAll(kPrimaryClr),
+                    foregroundColor:
+                        const MaterialStatePropertyAll(Colors.white)),
                 onPressed: () => context.push('/enterPhone'),
                 child: const Text(
                   'Use phone number',

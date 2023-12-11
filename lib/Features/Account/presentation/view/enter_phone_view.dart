@@ -1,6 +1,7 @@
 import 'package:dating/constants.dart';
 import 'package:dating/core/utils/styles.dart';
 import 'package:dating/core/widgets/back_arrow_app_bar.dart';
+import 'package:dating/core/widgets/custom_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -92,17 +93,8 @@ class _EnterPhoneViewState extends State<EnterPhoneView> {
                           height: 20,
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: ElevatedButton(
-                            style: ButtonStyle(
-                              fixedSize:
-                                  MaterialStatePropertyAll(Size(300.w, 50.h)),
-                              backgroundColor:
-                                  const MaterialStatePropertyAll(kPrimaryClr),
-                              foregroundColor:
-                                  const MaterialStatePropertyAll(Colors.white),
-                            ),
-                            onPressed: () async {
+                            padding: const EdgeInsets.all(16.0),
+                            child: customButton(kPrimaryClr, 'Save', () async {
                               formKey.currentState?.save();
                               if (isValid) {
                                 await verifyPhoneNumber(
@@ -111,13 +103,7 @@ class _EnterPhoneViewState extends State<EnterPhoneView> {
                                     number: number,
                                     willNavigate: true);
                               }
-                            },
-                            child: const Text(
-                              'Save',
-                              style: Styles.kH3,
-                            ),
-                          ),
-                        ),
+                            })),
                       ],
                     ),
                   ),

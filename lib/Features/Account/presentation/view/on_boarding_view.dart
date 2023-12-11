@@ -1,7 +1,8 @@
+import 'package:dating/Features/Account/presentation/view/sign_up_view.dart';
 import 'package:dating/Features/home/presentation/view/home_view.dart';
 import 'package:dating/constants.dart';
 import 'package:dating/core/utils/styles.dart';
-import 'package:go_router/go_router.dart';
+import 'package:dating/core/widgets/custom_button.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -47,15 +48,10 @@ class OnBoardingViewState extends State<OnBoardingView> {
 
       globalFooter: Column(
         children: [
-          ElevatedButton(
-            style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(kPrimaryClr)),
-            onPressed: () => context.go('/signUp'),
-            child: Text(
-              'Create an account',
-              style: Styles.kH3.copyWith(color: Colors.white),
-            ),
-          ),
+          customButton(kPrimaryClr, 'Create an account', () {
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => const SignUpView()));
+          }),
           const SizedBox(
             height: 20,
           ),

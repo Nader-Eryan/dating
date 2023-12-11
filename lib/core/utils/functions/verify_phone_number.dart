@@ -1,7 +1,7 @@
+import 'package:dating/Features/home/presentation/view/home_view.dart';
 import 'package:dating/core/utils/functions/push_snack.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import '../../../Features/Account/presentation/view/pin_code_verf_view.dart';
 
@@ -15,7 +15,8 @@ Future<void> verifyPhoneNumber(
     phoneNumber: number.phoneNumber,
     verificationCompleted: (PhoneAuthCredential credential) {
       auth.signInWithCredential(credential);
-      context.go('/homeView');
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const HomeView()));
     },
     verificationFailed: (FirebaseAuthException e) {
       if (e.code == 'invalid-phone-number') {

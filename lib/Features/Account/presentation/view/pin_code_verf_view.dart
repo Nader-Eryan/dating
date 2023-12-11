@@ -1,10 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
 
+import 'package:dating/Features/home/presentation/view/home_view.dart';
 import 'package:dating/core/utils/functions/verify_phone_number.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -205,7 +205,8 @@ class _PinCodeVerificationViewState extends State<PinCodeVerificationView> {
                             number: widget.number,
                             willNavigate: false);
                         if (mounted) {
-                          pushSnackBar(context, "OTP resend!!");
+                          pushSnackBar(context,
+                              'You have to wait at least 30 seconds before using this option');
                         }
                       } catch (e) {
                         if (mounted) {
@@ -255,7 +256,10 @@ class _PinCodeVerificationViewState extends State<PinCodeVerificationView> {
                         try {
                           await widget.auth.signInWithCredential(credential);
                           if (mounted) {
-                            context.go('/homeView');
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const HomeView()));
                           }
                         } catch (e) {
                           errorShakeAnimation();

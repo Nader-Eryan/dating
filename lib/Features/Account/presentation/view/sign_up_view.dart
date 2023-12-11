@@ -1,19 +1,20 @@
+import 'package:dating/Features/Account/data/repos/profile_repo_impl.dart';
+import 'package:dating/Features/Account/presentation/view/enter_phone_view.dart';
 import 'package:dating/constants.dart';
 import 'package:dating/core/utils/styles.dart';
+import 'package:dating/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../core/widgets/back_arrow_app_bar.dart';
 
 class SignUpView extends StatelessWidget {
   const SignUpView({super.key});
-
   @override
   Widget build(BuildContext context) {
+    final _profileRepo = ProfileRepoImpl();
     return Scaffold(
-      appBar: const BackArrowAppBar(),
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.all(24),
@@ -30,18 +31,16 @@ class SignUpView extends StatelessWidget {
               'Sign in to continue',
               style: Styles.kH4Bold,
             ),
-            ElevatedButton(
-                style: ButtonStyle(
-                    fixedSize: MaterialStatePropertyAll(Size(300.w, 50.h)),
-                    backgroundColor:
-                        const MaterialStatePropertyAll(kPrimaryClr),
-                    foregroundColor:
-                        const MaterialStatePropertyAll(Colors.white)),
-                onPressed: () => context.push('/enterPhone'),
-                child: const Text(
-                  'Use phone number',
-                  style: Styles.kH3Bold,
-                )),
+            customButton(
+              kPrimaryClr,
+              'Use phone number',
+              () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const EnterPhoneView()));
+              },
+            ),
             Row(
               children: [
                 const Expanded(
@@ -70,11 +69,16 @@ class SignUpView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    _profileRepo.signInWithFacebook();
+                  },
                   child: SvgPicture.asset('assets/images/facebook.svg'),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    _profileRepo.signInWithGoogle();
+                    _profileRepo.navigateToHome(context);
+                  },
                   child: SvgPicture.asset('assets/images/google.svg'),
                 ),
                 ElevatedButton(

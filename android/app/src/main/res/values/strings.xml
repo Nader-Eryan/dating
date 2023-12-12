@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">find friends</string>
+    <string name="facebook_app_id">1022476379042598</string>
+    <string name="fb_login_protocol_scheme">fb1022476379042598</string>
+    <string name="facebook_client_token">ea25251d00d77cad4b51e31e37a362f5</string>
+</resources>
+

@@ -7,8 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../../core/widgets/back_arrow_app_bar.dart';
-
 class SignUpView extends StatelessWidget {
   const SignUpView({super.key});
   @override
@@ -71,6 +69,7 @@ class SignUpView extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     _profileRepo.signInWithFacebook();
+                    _profileRepo.navigateToHome(context);
                   },
                   child: SvgPicture.asset('assets/images/facebook.svg'),
                 ),

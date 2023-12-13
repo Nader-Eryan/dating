@@ -7,4 +7,6 @@ abstract class ProfileRepo {
       BuildContext context, String email, String password);
   Future<void> signInWithFacebook();
   Future<void> resetPassword({required String email});
+  Future<void> urlLauncher(String url);
+  void navigateToHome(BuildContext context);
 }

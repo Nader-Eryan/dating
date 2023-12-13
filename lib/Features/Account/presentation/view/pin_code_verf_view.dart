@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
 
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:dating/Features/home/presentation/view/home_view.dart';
 import 'package:dating/core/utils/functions/verify_phone_number.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -205,12 +206,15 @@ class _PinCodeVerificationViewState extends State<PinCodeVerificationView> {
                             number: widget.number,
                             willNavigate: false);
                         if (mounted) {
-                          pushSnackBar(context,
-                              'You have to wait at least 30 seconds before using this option');
+                          pushSnackBar(
+                              context,
+                              'You have to wait at least 30 seconds before using this option',
+                              ContentType.warning);
                         }
                       } catch (e) {
                         if (mounted) {
-                          pushSnackBar(context, e.toString());
+                          pushSnackBar(
+                              context, e.toString(), ContentType.failure);
                         }
                       }
                     },

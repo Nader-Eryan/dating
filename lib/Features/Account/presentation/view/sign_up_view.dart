@@ -1,6 +1,8 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:dating/Features/Account/data/repos/profile_repo_impl.dart';
 import 'package:dating/Features/Account/presentation/view/enter_phone_view.dart';
 import 'package:dating/constants.dart';
+import 'package:dating/core/utils/functions/push_snack.dart';
 import 'package:dating/core/utils/styles.dart';
 import 'package:dating/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +13,7 @@ class SignUpView extends StatelessWidget {
   const SignUpView({super.key});
   @override
   Widget build(BuildContext context) {
-    final _profileRepo = ProfileRepoImpl();
+    final profileRepo = ProfileRepoImpl();
     return Scaffold(
       body: SafeArea(
           child: Padding(
@@ -68,21 +70,38 @@ class SignUpView extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    _profileRepo.signInWithFacebook();
-                    _profileRepo.navigateToHome(context);
+                    profileRepo.signInWithFacebook();
+                    profileRepo.navigateToHome(context);
                   },
-                  child: SvgPicture.asset('assets/images/facebook.svg'),
+                  child: SvgPicture.asset(
+                    'assets/images/facebook.svg',
+                    width: 40.w,
+                    height: 40.h,
+                  ),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    _profileRepo.signInWithGoogle();
-                    _profileRepo.navigateToHome(context);
+                    profileRepo.signInWithGoogle();
+                    profileRepo.navigateToHome(context);
                   },
-                  child: SvgPicture.asset('assets/images/google.svg'),
+                  child: SvgPicture.asset(
+                    'assets/images/google.svg',
+                    width: 40.w,
+                    height: 40.h,
+                  ),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
-                  child: SvgPicture.asset('assets/images/apple.svg'),
+                  onPressed: () {
+                    pushSnackBar(
+                        context,
+                        'Opps, you\'re not using an Apple device!',
+                        ContentType.warning);
+                  },
+                  child: SvgPicture.asset(
+                    'assets/images/apple.svg',
+                    width: 40.w,
+                    height: 40.h,
+                  ),
                 ),
               ],
             ),
@@ -90,13 +109,10 @@ class SignUpView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      'Terms of use',
-                      style: TextStyle(color: kPrimaryClr),
-                    )),
-                TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      profileRepo.urlLauncher(
+                          'https://github.com/Nader-Eryan/Findy-Privacy-policy/blob/main/README');
+                    },
                     child: const Text(
                       'Privacy policy',
                       style: TextStyle(color: kPrimaryClr),

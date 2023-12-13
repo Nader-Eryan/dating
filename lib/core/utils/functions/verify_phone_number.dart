@@ -1,3 +1,4 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:dating/Features/home/presentation/view/home_view.dart';
 import 'package:dating/core/utils/functions/push_snack.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -20,9 +21,11 @@ Future<void> verifyPhoneNumber(
     },
     verificationFailed: (FirebaseAuthException e) {
       if (e.code == 'invalid-phone-number') {
-        pushSnackBar(context, 'The provided phone number is not valid.');
+        pushSnackBar(context, 'The provided phone number is not valid.',
+            ContentType.failure);
       } else {
-        pushSnackBar(context, 'There was an error, please try again!');
+        pushSnackBar(context, 'There was an error, please try again!',
+            ContentType.failure);
       }
     },
     codeSent: (String verificationId, int? resendToken) async {

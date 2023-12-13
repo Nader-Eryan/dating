@@ -42,9 +42,9 @@ class OnBoardingViewState extends State<OnBoardingView> {
     return IntroductionScreen(
       key: introKey,
       globalBackgroundColor: Colors.white,
-      allowImplicitScrolling: true,
-      autoScrollDuration: 3000,
-      infiniteAutoScroll: true,
+      allowImplicitScrolling: false,
+      autoScrollDuration: null,
+      infiniteAutoScroll: false,
 
       globalFooter: Column(
         children: [

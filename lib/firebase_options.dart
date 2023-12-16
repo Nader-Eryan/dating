@@ -63,6 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '109587069681',
     projectId: 'dating-c9dea',
     storageBucket: 'dating-c9dea.appspot.com',
+    androidClientId: '109587069681-ttq3c3sr19pq1p9qo561pdcgnfturp5v.apps.googleusercontent.com',
+    iosClientId: '109587069681-faheog00bgil5nnjq2li12cnu0q5f71i.apps.googleusercontent.com',
     iosBundleId: 'com.example.dating',
   );
 }

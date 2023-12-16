@@ -111,7 +111,7 @@ class SignUpView extends StatelessWidget {
                 TextButton(
                     onPressed: () {
                       profileRepo.urlLauncher(
-                          'https://github.com/Nader-Eryan/Findy-Privacy-policy/blob/main/README');
+                          'https://github.com/Nader-Eryan/findy-Privacy-policy/blob/main/README');
                     },
                     child: const Text(
                       'Privacy policy',

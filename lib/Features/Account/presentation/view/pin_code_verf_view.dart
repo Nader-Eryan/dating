@@ -1,8 +1,7 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
 
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-import 'package:dating/Features/home/presentation/view/home_view.dart';
+import 'package:dating/Features/profile%20details/presentatioin/view/profile_details_one.dart';
 import 'package:dating/core/utils/functions/verify_phone_number.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -263,7 +262,8 @@ class _PinCodeVerificationViewState extends State<PinCodeVerificationView> {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const HomeView()));
+                                    builder: (context) =>
+                                        const ProfileDetailsOne()));
                           }
                         } catch (e) {
                           errorShakeAnimation();

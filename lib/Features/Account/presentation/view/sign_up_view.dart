@@ -70,8 +70,14 @@ class SignUpView extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    profileRepo.signInWithFacebook();
-                    profileRepo.navigateToHome(context);
+                    try {
+                      profileRepo.signInWithFacebook(context);
+                    } catch (e) {
+                      pushSnackBar(
+                          context,
+                          'There was an error, please try again later!',
+                          ContentType.failure);
+                    }
                   },
                   child: SvgPicture.asset(
                     'assets/images/facebook.svg',
@@ -81,8 +87,14 @@ class SignUpView extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    profileRepo.signInWithGoogle();
-                    profileRepo.navigateToHome(context);
+                    try {
+                      profileRepo.signInWithGoogle(context).then((value) {});
+                    } catch (e) {
+                      pushSnackBar(
+                          context,
+                          'There was an error, please try again later!',
+                          ContentType.failure);
+                    }
                   },
                   child: SvgPicture.asset(
                     'assets/images/google.svg',

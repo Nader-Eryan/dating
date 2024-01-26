@@ -1,6 +1,6 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:dating/Features/Account/data/repos/profile_repo.dart';
-import 'package:dating/Features/home/presentation/view/home_view.dart';
+import 'package:dating/Features/profile%20details/presentatioin/view/profile_details_one.dart';
 import 'package:dating/core/utils/functions/push_snack.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +11,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class ProfileRepoImpl implements ProfileRepo {
   @override
-  Future<void> signInWithGoogle() async {
+  Future<void> signInWithGoogle(BuildContext context) async {
     // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
     // Obtain the auth details from the request
@@ -25,7 +25,10 @@ class ProfileRepoImpl implements ProfileRepo {
     );
 
     // Once signed in, return the UserCredential
-    await getIt.get<FirebaseAuth>().signInWithCredential(credential);
+    await getIt
+        .get<FirebaseAuth>()
+        .signInWithCredential(credential)
+        .then((value) => navigateToHome(context));
   }
 
   @override
@@ -38,11 +41,15 @@ class ProfileRepoImpl implements ProfileRepo {
       // pushSnackBar(context, S.of(context).SignedInSuccessfullyEnjoy);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        pushSnackBar(
-            context, 'No user found for that email', ContentType.failure);
+        if (context.mounted) {
+          pushSnackBar(
+              context, 'No user found for that email', ContentType.failure);
+        }
       } else if (e.code == 'wrong-password') {
-        pushSnackBar(context, 'Wrong password provided for that user',
-            ContentType.failure);
+        if (context.mounted) {
+          pushSnackBar(context, 'Wrong password provided for that user',
+              ContentType.failure);
+        }
       }
     }
   }
@@ -58,18 +65,25 @@ class ProfileRepoImpl implements ProfileRepo {
       // pushSnackBar(context, S.of(context).RegisteredSuccessfullyEnjoy);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        pushSnackBar(context, 'The password is too weak', ContentType.warning);
+        if (context.mounted) {
+          pushSnackBar(
+              context, 'The password is too weak', ContentType.warning);
+        }
       } else if (e.code == 'email-already-in-use') {
-        pushSnackBar(
-            context, 'The account already exists', ContentType.warning);
+        if (context.mounted) {
+          pushSnackBar(
+              context, 'The account already exists', ContentType.warning);
+        }
       }
     } catch (e) {
-      pushSnackBar(context, '$e', ContentType.failure);
+      if (context.mounted) {
+        pushSnackBar(context, '$e', ContentType.failure);
+      }
     }
   }
 
   @override
-  Future<void> signInWithFacebook() async {
+  Future<void> signInWithFacebook(BuildContext context) async {
     // Trigger the sign-in flow
     final LoginResult loginResult = await FacebookAuth.instance.login();
 
@@ -78,7 +92,10 @@ class ProfileRepoImpl implements ProfileRepo {
       final OAuthCredential facebookAuthCredential =
           FacebookAuthProvider.credential(loginResult.accessToken!.token);
       // Once signed in, return the UserCredential
-      getIt.get<FirebaseAuth>().signInWithCredential(facebookAuthCredential);
+      getIt
+          .get<FirebaseAuth>()
+          .signInWithCredential(facebookAuthCredential)
+          .then((value) => navigateToHome(context));
     }
   }
 
@@ -89,8 +106,8 @@ class ProfileRepoImpl implements ProfileRepo {
 
   @override
   void navigateToHome(BuildContext context) {
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => const HomeView()));
+    Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (context) => const ProfileDetailsOne()));
   }
 
   @override

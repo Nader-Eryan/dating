@@ -2,6 +2,7 @@ import 'package:dating/Features/Account/presentation/view/on_boarding_view.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:get/get.dart';
 import 'core/utils/service_locator.dart';
 import 'firebase_options.dart';
 
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (_, child) {
-          return MaterialApp(
+          return GetMaterialApp(
             home: const OnBoardingView(),
             debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',

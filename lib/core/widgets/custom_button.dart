@@ -11,7 +11,7 @@ ElevatedButton customButton(Color color, String txt, VoidCallback onPressed,
       backgroundColor: MaterialStateProperty.all(color),
       minimumSize: MaterialStateProperty.all(const Size(260, 56)),
       shape: MaterialStateProperty.all(
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       ),
     ),
     onPressed: onPressed,

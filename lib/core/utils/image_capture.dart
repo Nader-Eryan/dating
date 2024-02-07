@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:dating/Features/profile%20details/presentatioin/manager/firebase_controller.dart';
+import 'package:dating/Features/profile%20details/presentatioin/manager/profie_details_controller.dart';
 import 'package:dating/core/widgets/back_arrow_app_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +25,8 @@ class _ImageCaptureState extends State<ImageCapture> {
   /// Active image file
   XFile? _imageFile;
   String? uid;
+  final ProfileDetailsController _profileDetailsController = Get.find();
+  final FirebaseController _firebaseController = Get.find();
 
   /// Remove image
   void _clear() {
@@ -111,6 +115,8 @@ class _ImageCaptureState extends State<ImageCapture> {
                     ),
                     onPressed: () {
                       safeImagelocally(path: _imageFile!.path);
+                      _profileDetailsController.setImage(
+                          _imageFile!.path, _firebaseController.uid);
                       popPage();
                     }, //_saveImage
                   )

@@ -55,13 +55,13 @@ class _ProfileDetailsOneBodyState extends State<ProfileDetailsOneBody> {
               const Spacer(
                 flex: 3,
               ),
-              GetX<ProfileDetailsController>(
+              GetBuilder<ProfileDetailsController>(
                 init: ProfileDetailsController(),
                 builder: (controller) => GestureDetector(
                   child: CircleAvatar(
                     radius: 100.w,
-                    backgroundImage: controller.imgPath.value != ''
-                        ? FileImage(File(controller.imgPath.value))
+                    backgroundImage: controller.imgPath != null
+                        ? FileImage(File(controller.imgPath))
                         : const AssetImage('assets/images/face.svg')
                             as ImageProvider,
                     child: SvgPicture.asset(

@@ -10,7 +10,7 @@ pushSnackBar(BuildContext context, String message, ContentType contentType) {
       content: AwesomeSnackbarContent(
           messageFontSize: 15.w,
           titleFontSize: 17.w,
-          title: 'Opps',
+          title: 'Alert',
           message: message,
           contentType: contentType));
   return ScaffoldMessenger.of(context)

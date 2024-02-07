@@ -262,8 +262,7 @@ class _PinCodeVerificationViewState extends State<PinCodeVerificationView> {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        const ProfileDetailsOne()));
+                                    builder: (context) => ProfileDetailsOne()));
                           }
                         } catch (e) {
                           errorShakeAnimation();

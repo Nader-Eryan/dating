@@ -106,8 +106,8 @@ class ProfileRepoImpl implements ProfileRepo {
 
   @override
   void navigateToHome(BuildContext context) {
-    Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (context) => const ProfileDetailsOne()));
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => ProfileDetailsOne()));
   }
 
   @override

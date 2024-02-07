@@ -21,12 +21,12 @@ void uploadFileRemotely(String filePath, String uid) {
   uploadTask.snapshotEvents.listen((TaskSnapshot taskSnapshot) {
     switch (taskSnapshot.state) {
       case TaskState.running:
-        final progress =
-            100.0 * (taskSnapshot.bytesTransferred / taskSnapshot.totalBytes);
-        print("Upload is $progress% complete.");
+        // final progress =
+        //     100.0 * (taskSnapshot.bytesTransferred / taskSnapshot.totalBytes);
+        //print("Upload is $progress% complete.");
         break;
       case TaskState.paused:
-        print("Upload is paused.");
+        //print("Upload is paused.");
         break;
       case TaskState.canceled:
         pushSnackBar(

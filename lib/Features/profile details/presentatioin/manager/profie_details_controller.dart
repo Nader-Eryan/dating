@@ -9,6 +9,7 @@ class ProfileDetailsController extends GetxController {
   String? _imgPath;
   get imgPath => _imgPath;
 
+  late String fName, sName;
   void pickPicture(BuildContext context) {
     Get.to(const ImageCapture());
     getImage();

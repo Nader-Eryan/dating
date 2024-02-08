@@ -2,9 +2,11 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:dating/Features/profile%20details/presentatioin/manager/profie_details_controller.dart';
+import 'package:dating/Features/profile%20details/presentatioin/view/profile_details_two.dart';
 import 'package:dating/core/utils/styles.dart';
 import 'package:dating/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -20,6 +22,8 @@ class ProfileDetailsOneBody extends StatefulWidget {
 
 class _ProfileDetailsOneBodyState extends State<ProfileDetailsOneBody> {
   DateTime selectedDate = DateTime(2000, 1, 1);
+  final TextEditingController fNameController = TextEditingController(),
+      sNameController = TextEditingController();
   Future<void> selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
         context: context,
@@ -34,9 +38,16 @@ class _ProfileDetailsOneBodyState extends State<ProfileDetailsOneBody> {
   }
 
   @override
+  void dispose() {
+    fNameController.dispose();
+    sNameController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(32),
+      padding: const EdgeInsets.all(kPagePadding),
       child: SingleChildScrollView(
         child: SizedBox(
           height: 580.h,
@@ -79,6 +90,10 @@ class _ProfileDetailsOneBodyState extends State<ProfileDetailsOneBody> {
                 flex: 2,
               ),
               TextFormField(
+                controller: fNameController,
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]'))
+                ],
                 maxLength: 20,
                 decoration: const InputDecoration(
                     label: Text('First name'),
@@ -86,6 +101,10 @@ class _ProfileDetailsOneBodyState extends State<ProfileDetailsOneBody> {
                         borderRadius: BorderRadius.all(Radius.circular(16)))),
               ),
               TextFormField(
+                controller: sNameController,
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]'))
+                ],
                 maxLength: 20,
                 decoration: const InputDecoration(
                     label: Text('Last name'),
@@ -135,7 +154,12 @@ class _ProfileDetailsOneBodyState extends State<ProfileDetailsOneBody> {
               ),
               SizedBox(
                   width: double.infinity,
-                  child: customButton(kPrimaryClr, 'Confirm', () {}))
+                  child: customButton(kPrimaryClr, 'Confirm', () {
+                    if (fNameController.text.isNotEmpty &&
+                        sNameController.text.isNotEmpty) {
+                      Get.to(const ProfileDetialsTwo());
+                    }
+                  }))
             ],
           ),
         ),

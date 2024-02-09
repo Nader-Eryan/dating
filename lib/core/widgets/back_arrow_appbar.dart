@@ -9,12 +9,13 @@ class BackArrow extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: Colors.grey)),
+          border: Border.all(color: Colors.grey.shade300)),
       child: IconButton(
           onPressed: () {
             Navigator.pop(context);
           },
           icon: const Icon(
+            size: 20,
             Icons.arrow_back_ios_new,
             color: kPrimaryClr,
           )),

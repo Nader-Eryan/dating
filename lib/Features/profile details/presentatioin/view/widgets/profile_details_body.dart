@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:dating/Features/profile%20details/presentatioin/manager/profie_details_one_controller.dart';
-import 'package:dating/Features/profile%20details/presentatioin/view/profile_details_two.dart';
+import 'package:dating/Features/profile%20details/presentatioin/view/iam_view.dart';
 import 'package:dating/core/utils/styles.dart';
 import 'package:dating/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
@@ -13,14 +13,14 @@ import 'package:get/get.dart';
 
 import '../../../../../constants.dart';
 
-class ProfileDetailsOneBody extends StatefulWidget {
-  const ProfileDetailsOneBody({super.key});
+class ProfileDetailsBody extends StatefulWidget {
+  const ProfileDetailsBody({super.key});
 
   @override
-  State<ProfileDetailsOneBody> createState() => _ProfileDetailsOneBodyState();
+  State<ProfileDetailsBody> createState() => _ProfileDetailsBodyState();
 }
 
-class _ProfileDetailsOneBodyState extends State<ProfileDetailsOneBody> {
+class _ProfileDetailsBodyState extends State<ProfileDetailsBody> {
   DateTime selectedDate = DateTime(2000, 1, 1);
   final TextEditingController fNameController = TextEditingController(),
       sNameController = TextEditingController();
@@ -157,7 +157,7 @@ class _ProfileDetailsOneBodyState extends State<ProfileDetailsOneBody> {
                   child: customButton(kPrimaryClr, 'Confirm', () {
                     if (fNameController.text.isNotEmpty &&
                         sNameController.text.isNotEmpty) {
-                      Get.to(const ProfileDetialsTwo());
+                      Get.to(const IamView());
                     }
                   }))
             ],

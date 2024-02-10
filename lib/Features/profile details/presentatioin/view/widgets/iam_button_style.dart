@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../constants.dart';
 import '../../../../../core/utils/styles.dart';
 
-ElevatedButton profileThreeButton(Color txtColor, String txt,
-    VoidCallback onPressed, Color borderColor, Color groundColor,
+ElevatedButton iamButton(Color txtColor, String txt, VoidCallback onPressed,
+    Color borderColor, Color groundColor,
     {Icon? icon, String pressed = ''}) {
   return ElevatedButton(
     style: ButtonStyle(

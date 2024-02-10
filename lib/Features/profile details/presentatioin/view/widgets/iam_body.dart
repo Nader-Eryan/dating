@@ -6,11 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../profile_details_three.dart';
-import 'profile_two_button_style.dart';
+import '../passion_view.dart';
+import 'iam_button_style.dart';
 
-class ProfileDetailsTwoBody extends StatelessWidget {
-  const ProfileDetailsTwoBody({super.key});
+class IamBody extends StatelessWidget {
+  const IamBody({super.key});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -32,15 +32,15 @@ class ProfileDetailsTwoBody extends StatelessWidget {
               builder: (controller) => Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  profileThreeButton(Colors.black, 'Woman', () {
+                  iamButton(Colors.black, 'Woman', () {
                     controller.setPressed('Woman');
                   }, Colors.grey.shade300, Colors.white,
                       pressed: controller.pressed),
-                  profileThreeButton(Colors.black, 'Man', () {
+                  iamButton(Colors.black, 'Man', () {
                     controller.setPressed('Man');
                   }, Colors.grey.shade300, Colors.white,
                       pressed: controller.pressed),
-                  profileThreeButton(Colors.black, 'Non-binary', () {
+                  iamButton(Colors.black, 'Non-binary', () {
                     controller.setPressed('Non-binary');
                   }, Colors.grey.shade300, Colors.white,
                       pressed: controller.pressed),
@@ -55,7 +55,7 @@ class ProfileDetailsTwoBody extends StatelessWidget {
             init: ProfileDetailsThreeController(),
             builder: (c) => customButton(kPrimaryClr, 'Continue', () {
               if (c.pressed.isNotEmpty) {
-                Get.to(const ProfileDetailsThree());
+                Get.to(const PassionsView());
               }
             }),
           ),

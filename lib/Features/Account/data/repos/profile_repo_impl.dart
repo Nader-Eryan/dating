@@ -1,6 +1,6 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:dating/Features/Account/data/repos/profile_repo.dart';
-import 'package:dating/Features/profile%20details/presentatioin/view/profile_details_one.dart';
+import 'package:dating/Features/profile%20details/presentatioin/view/profile_details_view.dart';
 import 'package:dating/core/utils/functions/push_snack.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -107,7 +107,7 @@ class ProfileRepoImpl implements ProfileRepo {
   @override
   void navigateToHome(BuildContext context) {
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => ProfileDetailsOne()));
+        context, MaterialPageRoute(builder: (context) => ProfileDetailsView()));
   }
 
   @override

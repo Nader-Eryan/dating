@@ -1,4 +1,5 @@
 import 'package:dating/Features/Account/presentation/view/on_boarding_view.dart';
+import 'package:dating/Features/profile%20details/presentatioin/view/passion_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
         splitScreenMode: true,
         builder: (_, child) {
           return GetMaterialApp(
-            home: const OnBoardingView(),
+            home: const PassionsView(),
             debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
             theme: ThemeData(

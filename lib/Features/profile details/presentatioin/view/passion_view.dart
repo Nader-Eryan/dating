@@ -5,7 +5,6 @@ import 'widgets/passion_body.dart';
 
 class PassionsView extends StatelessWidget {
   const PassionsView({super.key});
-
   @override
   Widget build(BuildContext context) {
     return const Scaffold(

@@ -1,9 +1,14 @@
 import 'package:get/get.dart';
 
 class PassionController extends GetxController {
-  String pressed = '';
-  void setPressed(String pressedName) {
-    pressed = pressedName;
+  List<int> listOfPassion = [];
+  void addPassion(int num) {
+    listOfPassion.add(num);
+    update();
+  }
+
+  void removePassion(int num) {
+    listOfPassion.remove(num);
     update();
   }
 }

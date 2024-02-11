@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../../../../core/utils/functions/get_image_locally.dart';
 import '../../../../core/utils/image_capture.dart';
 
-class ProfileDetailsOneController extends GetxController {
+class ProfileDetailsController extends GetxController {
   String? _imgPath;
   get imgPath => _imgPath;
 

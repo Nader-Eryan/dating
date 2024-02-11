@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:dating/core/utils/firebase_controller.dart';
-import 'package:dating/Features/profile%20details/presentatioin/manager/profie_details_one_controller.dart';
+import 'package:dating/Features/profile%20details/presentatioin/manager/profie_details_controller.dart';
 import 'package:dating/core/widgets/back_arrow_app_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +25,7 @@ class _ImageCaptureState extends State<ImageCapture> {
   /// Active image file
   XFile? _imageFile;
   String? uid;
-  final ProfileDetailsOneController _profileDetailsController = Get.find();
+  final ProfileDetailsController _profileDetailsController = Get.find();
   final FirebaseController _firebaseController = Get.find();
 
   /// Remove image

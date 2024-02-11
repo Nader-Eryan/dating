@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:dating/Features/profile%20details/presentatioin/manager/profie_details_one_controller.dart';
+import 'package:dating/Features/profile%20details/presentatioin/manager/profie_details_controller.dart';
 import 'package:dating/Features/profile%20details/presentatioin/view/iam_view.dart';
 import 'package:dating/core/utils/styles.dart';
 import 'package:dating/core/widgets/custom_button.dart';
@@ -68,8 +68,8 @@ class _ProfileDetailsBodyState extends State<ProfileDetailsBody> {
               const Spacer(
                 flex: 3,
               ),
-              GetBuilder<ProfileDetailsOneController>(
-                init: ProfileDetailsOneController(),
+              GetBuilder<ProfileDetailsController>(
+                init: ProfileDetailsController(),
                 builder: (controller) => GestureDetector(
                   child: CircleAvatar(
                     radius: 100.w,

@@ -1,4 +1,4 @@
-import 'package:dating/Features/profile%20details/presentatioin/manager/profile_details_two_controller.dart';
+import 'package:dating/Features/profile%20details/presentatioin/manager/iam_controller.dart';
 import 'package:dating/constants.dart';
 import 'package:dating/core/utils/styles.dart';
 import 'package:dating/core/widgets/custom_button.dart';
@@ -28,7 +28,7 @@ class IamBody extends StatelessWidget {
           SizedBox(
             height: 180.h,
             child: GetBuilder(
-              init: ProfileDetailsThreeController(),
+              init: IamController(),
               builder: (controller) => Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -52,7 +52,7 @@ class IamBody extends StatelessWidget {
             flex: 8,
           ),
           GetBuilder(
-            init: ProfileDetailsThreeController(),
+            init: IamController(),
             builder: (c) => customButton(kPrimaryClr, 'Continue', () {
               if (c.pressed.isNotEmpty) {
                 Get.to(const PassionsView());

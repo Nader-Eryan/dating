@@ -22,6 +22,8 @@ class ProfileDetailsBody extends StatefulWidget {
 
 class _ProfileDetailsBodyState extends State<ProfileDetailsBody> {
   DateTime selectedDate = DateTime(2000, 1, 1);
+  final _formKey = GlobalKey<FormState>();
+
   final TextEditingController fNameController = TextEditingController(),
       sNameController = TextEditingController();
   Future<void> selectDate(BuildContext context) async {
@@ -73,8 +75,7 @@ class _ProfileDetailsBodyState extends State<ProfileDetailsBody> {
                     radius: 100.w,
                     backgroundImage: controller.imgPath != null
                         ? FileImage(File(controller.imgPath))
-                        : const AssetImage('assets/images/face.svg')
-                            as ImageProvider,
+                        : const AssetImage('') as ImageProvider,
                     child: SvgPicture.asset(
                       'assets/images/face.svg',
                       width: 150.w,
@@ -89,28 +90,54 @@ class _ProfileDetailsBodyState extends State<ProfileDetailsBody> {
               const Spacer(
                 flex: 2,
               ),
-              TextFormField(
-                controller: fNameController,
-                inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]'))
-                ],
-                maxLength: 20,
-                decoration: const InputDecoration(
-                    label: Text('First name'),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(16)))),
-              ),
-              TextFormField(
-                controller: sNameController,
-                inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]'))
-                ],
-                maxLength: 20,
-                decoration: const InputDecoration(
-                    label: Text('Last name'),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(16)))),
-              ),
+              Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter a valid name';
+                          }
+                          return null;
+                        },
+                        controller: fNameController,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]'))
+                        ],
+                        maxLength: 20,
+                        decoration: const InputDecoration(
+                            label: Text('First name'),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(16)))),
+                      ),
+                      const SizedBox(
+                        height: 6,
+                      ),
+                      TextFormField(
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter a valid name';
+                          }
+                          return null;
+                        },
+                        controller: sNameController,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]'))
+                        ],
+                        maxLength: 20,
+                        decoration: const InputDecoration(
+                            label: Text('Last name'),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(16)))),
+                      ),
+                      const SizedBox(
+                        height: 6,
+                      ),
+                    ],
+                  )),
               Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
@@ -155,9 +182,11 @@ class _ProfileDetailsBodyState extends State<ProfileDetailsBody> {
               SizedBox(
                   width: double.infinity,
                   child: customButton(kPrimaryClr, 'Confirm', () {
-                    if (fNameController.text.isNotEmpty &&
-                        sNameController.text.isNotEmpty) {
-                      Get.to(const IamView());
+                    if (_formKey.currentState!.validate()) {
+                      if (fNameController.text.isNotEmpty &&
+                          sNameController.text.isNotEmpty) {
+                        Get.to(const IamView());
+                      }
                     }
                   }))
             ],

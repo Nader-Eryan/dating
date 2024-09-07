@@ -48,7 +48,7 @@ class OnBoardingViewState extends State<OnBoardingView> {
 
       globalFooter: Column(
         children: [
-          customButton(kPrimaryClr, 'Create an account', () {
+          customButton(kPrimaryClr, 'Let\'s go', () {
             Navigator.pushReplacement(context,
                 MaterialPageRoute(builder: (context) => const SignUpView()));
           }),

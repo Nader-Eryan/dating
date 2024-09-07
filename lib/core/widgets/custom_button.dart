@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/utils/styles.dart';
 
-ElevatedButton customButton(Color color, String txt, VoidCallback onPressed,
+ElevatedButton customButton(Color color, String txt, VoidCallback? onPressed,
     {String? imgUrl}) {
   return ElevatedButton(
     style: buttonStyle(color),

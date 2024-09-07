@@ -31,16 +31,14 @@ class SignUpView extends StatelessWidget {
               'Sign in to continue',
               style: Styles.kH4Bold,
             ),
-            customButton(
-              kPrimaryClr,
-              'Use phone number',
-              () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const EnterPhoneView()));
-              },
-            ),
+            customButton(Colors.grey, 'Use phone number', null
+                // () {
+                //   Navigator.push(
+                //       context,
+                //       MaterialPageRoute(
+                //           builder: (context) => const EnterPhoneView()));
+                // },
+                ),
             Row(
               children: [
                 const Expanded(

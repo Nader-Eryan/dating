@@ -1,10 +1,14 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dating/Features/profile%20details/presentatioin/manager/profie_details_controller.dart';
 import 'package:dating/Features/profile%20details/presentatioin/view/iam_view.dart';
+import 'package:dating/core/utils/service_locator.dart';
 import 'package:dating/core/utils/styles.dart';
 import 'package:dating/core/widgets/custom_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,6 +16,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../../../constants.dart';
+import '../../../../../core/utils/functions/push_snack.dart';
 
 class ProfileDetailsBody extends StatefulWidget {
   const ProfileDetailsBody({super.key});
@@ -23,6 +28,9 @@ class ProfileDetailsBody extends StatefulWidget {
 class _ProfileDetailsBodyState extends State<ProfileDetailsBody> {
   DateTime selectedDate = DateTime(2000, 1, 1);
   final _formKey = GlobalKey<FormState>();
+  CollectionReference users =
+      getIt.get<FirebaseFirestore>().collection('users');
+  String uid = getIt.get<FirebaseAuth>().currentUser!.uid;
 
   final TextEditingController fNameController = TextEditingController(),
       sNameController = TextEditingController();
@@ -181,11 +189,20 @@ class _ProfileDetailsBodyState extends State<ProfileDetailsBody> {
               ),
               SizedBox(
                   width: double.infinity,
-                  child: customButton(kPrimaryClr, 'Confirm', () {
+                  child: customButton(kPrimaryClr, 'Confirm', () async {
                     if (_formKey.currentState!.validate()) {
                       if (fNameController.text.isNotEmpty &&
                           sNameController.text.isNotEmpty) {
-                        Get.to(const IamView());
+                        bool state = await addUser(
+                            fNameController.text,
+                            sNameController.text,
+                            DateTime.now().year - selectedDate.year);
+                        if (state) {
+                          Get.to(const IamView());
+                        } else if (mounted) {
+                          pushSnackBar(context, 'Opps, Check your internet',
+                              ContentType.failure);
+                        }
                       }
                     }
                   }))
@@ -194,5 +211,13 @@ class _ProfileDetailsBodyState extends State<ProfileDetailsBody> {
         ),
       ),
     );
+  }
+
+  Future<bool> addUser(String fName, String lName, int age) {
+    return users
+        .doc(uid)
+        .set({'fName': fName, 'lName': lName, 'age': age})
+        .then((value) => true)
+        .catchError((error) => false);
   }
 }

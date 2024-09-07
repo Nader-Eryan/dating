@@ -1,6 +1,5 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:dating/Features/Account/data/repos/profile_repo_impl.dart';
-import 'package:dating/Features/Account/presentation/view/enter_phone_view.dart';
 import 'package:dating/constants.dart';
 import 'package:dating/core/utils/functions/push_snack.dart';
 import 'package:dating/core/utils/styles.dart';

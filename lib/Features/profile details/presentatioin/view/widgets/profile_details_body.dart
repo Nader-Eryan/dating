@@ -30,7 +30,7 @@ class _ProfileDetailsBodyState extends State<ProfileDetailsBody> {
   final _formKey = GlobalKey<FormState>();
   CollectionReference users =
       getIt.get<FirebaseFirestore>().collection('users');
-  String uid = getIt.get<FirebaseAuth>().currentUser!.uid;
+  final String uid = getIt.get<FirebaseAuth>().currentUser!.uid;
 
   final TextEditingController fNameController = TextEditingController(),
       sNameController = TextEditingController();
@@ -193,7 +193,7 @@ class _ProfileDetailsBodyState extends State<ProfileDetailsBody> {
                     if (_formKey.currentState!.validate()) {
                       if (fNameController.text.isNotEmpty &&
                           sNameController.text.isNotEmpty) {
-                        bool state = await addUser(
+                        bool state = await addUserDetails(
                             fNameController.text,
                             sNameController.text,
                             DateTime.now().year - selectedDate.year);
@@ -213,7 +213,7 @@ class _ProfileDetailsBodyState extends State<ProfileDetailsBody> {
     );
   }
 
-  Future<bool> addUser(String fName, String lName, int age) {
+  Future<bool> addUserDetails(String fName, String lName, int age) {
     return users
         .doc(uid)
         .set({'fName': fName, 'lName': lName, 'age': age})

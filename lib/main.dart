@@ -1,5 +1,4 @@
 import 'package:dating/Features/Account/presentation/view/on_boarding_view.dart';
-import 'package:dating/Features/profile%20details/presentatioin/view/passion_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:firebase_core/firebase_core.dart';

@@ -7,8 +7,8 @@ class PassionsView extends StatelessWidget {
   const PassionsView({super.key});
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: BackArrowAppBar(),
+    return Scaffold(
+      appBar: const BackArrowAppBar(),
       body: SafeArea(child: PassionBody()),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:dating/Features/profile%20details/data/model/passion_data.dart';
+import 'package:dating/Features/profile%20details/data/repo/passion_repo.dart';
 import 'package:dating/Features/profile%20details/presentatioin/manager/passion_view_controller.dart';
 import 'package:dating/Features/profile%20details/presentatioin/view/notification_access_view.dart';
 import 'package:dating/Features/profile%20details/presentatioin/view/widgets/passion_container.dart';
@@ -10,8 +11,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class PassionBody extends StatelessWidget {
-  const PassionBody({super.key});
-
+  PassionBody({super.key});
+  final passionRepo = PassionRepo();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -36,27 +37,28 @@ class PassionBody extends StatelessWidget {
             itemCount: listOfInterests.length,
             itemBuilder: (BuildContext context, int index) {
               return GetBuilder(
-                  init: PassionController(),
-                  builder: (controller) => GestureDetector(
-                        onTap: () {
-                          if (controller.listOfPassion.contains(index)) {
-                            controller.removePassion(index);
-                          } else {
-                            controller.addPassion(index);
-                          }
-                        },
-                        child: PassionContainer(
-                          txt: listOfInterests[index].$1,
-                          icon: listOfInterests[index].$2.runtimeType == Icon
-                              ? listOfInterests[index].$2
-                              : null,
-                          svgPicture: listOfInterests[index].$2.runtimeType ==
-                                  SvgPicture
-                              ? listOfInterests[index].$2
-                              : null,
-                          index: index,
-                        ),
-                      ));
+                init: PassionController(),
+                builder: (controller) => GestureDetector(
+                  onTap: () {
+                    if (controller.listOfPassion.contains(index)) {
+                      controller.removePassion(index);
+                    } else {
+                      controller.addPassion(index);
+                    }
+                  },
+                  child: PassionContainer(
+                    txt: listOfInterests[index].$1,
+                    icon: listOfInterests[index].$2.runtimeType == Icon
+                        ? listOfInterests[index].$2
+                        : null,
+                    svgPicture:
+                        listOfInterests[index].$2.runtimeType == SvgPicture
+                            ? listOfInterests[index].$2
+                            : null,
+                    index: index,
+                  ),
+                ),
+              );
             },
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
@@ -68,9 +70,18 @@ class PassionBody extends StatelessWidget {
         const SizedBox(
           height: 30,
         ),
-        customButton(kPrimaryClr, 'Continue', () {
-          Get.to(const NotificationAccessView());
-        })
+        GetBuilder(
+          init: PassionController(),
+          builder: (controller) =>
+              customButton(kPrimaryClr, 'Continue', () async {
+            try {
+              passionRepo.addUserPassion(controller.listOfPassion);
+              Get.to(() => const NotificationAccessView());
+            } catch (e) {
+              Get.snackbar('Opps!', 'Check internet');
+            }
+          }),
+        ),
       ]),
     );
   }

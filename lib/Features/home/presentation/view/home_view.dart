@@ -1,6 +1,9 @@
+import 'package:dating/Features/Account/presentation/view/on_boarding_view.dart';
 import 'package:dating/Features/home/presentation/manager/bottom_nav_controller.dart';
 import 'package:dating/constants.dart';
+import 'package:dating/core/utils/service_locator.dart';
 import 'package:dating/core/utils/styles.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -10,17 +13,24 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const SafeArea(
+      body: SafeArea(
         child: Column(
           children: [
-            Text(
+            const Text(
               'This is the test bold text',
               style: Styles.kH3Bold,
             ),
-            Text(
+            const Text(
               'This is the test regular text',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
+            ElevatedButton(
+                onPressed: () {
+                  getIt<FirebaseAuth>().signOut().then((value) async {
+                    Get.offAll(() => const OnBoardingView());
+                  });
+                },
+                child: const Text('Logout'))
           ],
         ),
       ),

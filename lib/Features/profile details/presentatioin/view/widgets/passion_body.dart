@@ -1,7 +1,7 @@
 import 'package:dating/Features/profile%20details/data/model/passion_data.dart';
 import 'package:dating/Features/profile%20details/data/repo/passion_repo.dart';
 import 'package:dating/Features/profile%20details/presentatioin/manager/passion_view_controller.dart';
-import 'package:dating/Features/profile%20details/presentatioin/view/notification_access_view.dart';
+import 'package:dating/Features/profile%20details/presentatioin/view/location_access_view.dart';
 import 'package:dating/Features/profile%20details/presentatioin/view/widgets/passion_container.dart';
 import 'package:dating/constants.dart';
 import 'package:dating/core/utils/styles.dart';
@@ -76,7 +76,7 @@ class PassionBody extends StatelessWidget {
               customButton(kPrimaryClr, 'Continue', () async {
             try {
               passionRepo.addUserPassion(controller.listOfPassion);
-              Get.to(() => const NotificationAccessView());
+              Get.to(() => const LocationAccessView());
             } catch (e) {
               Get.snackbar('Opps!', 'Check internet');
             }
